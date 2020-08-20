@@ -1,0 +1,94 @@
+
+<div class="col-lg-12">
+<h3>Add drink</h3>
+    <hr>
+</div>
+<div class="col-md-6 iffset-md-3">
+        <div class="card">
+            <div class="card-body">
+                
+                <form action="/add/drinks" method="POST">
+                   <div class="form-group">
+                    <label class="col-form-label" for="inputDefault">Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Light Coca Cola" id="inputDefault" required>
+                    </div>
+
+                    <div class="form-group">
+                    <label class="col-form-label col-form-label-lg" for="inputLarge">Description</label>
+                    <input class="form-control form-control-lg" name="description" type="text" placeholder="Include a glass with ice" id="inputLarge" required>
+                    </div>
+
+                 
+
+                    <div class="form-group">
+                    <label class="col-form-label col-form-label-sm" for="inputSmall">Suggestions</label>
+                    <input class="form-control form-control-sm" name="suggestion" type="text" placeholder="Withot straw please" id="inputSmall" required>
+                    </div>
+
+                    <div class="form-group">
+                    <label class="control-label">Price</label>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="number" name="price" class="form-control" aria-label="Amount (to the nearest dollar)" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <hr>
+                    <input type="submit" class="btn btn-success" value="Create"/>
+
+                </form>
+            </div>
+        </div>
+</div>
+<!-- Pizza's Table -->
+<div class="col-md-6 iffset-md-3">
+{{#if drinks}}
+    <table class="table table-hover">
+  <thead>
+      
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Actions</th>
+      <th scope="col"></th>
+
+    </tr>
+
+
+  </thead>
+  <tbody>
+    {{#each drinks}}
+    <tr>
+    
+      <th scope="row">{{name}}</th>
+       <td>$ {{price}} mx</td>
+       <td><button type="button"
+         data-toggle="modal" data-target="#myModal" 
+         onclick="return deleteDrink('{{@key}}','{{name}}')"
+         class="btn btn-sm btn-danger">Delete</button></td>
+      <td>
+          <button type="button" class="btn btn-sm btn-info" 
+          data-toggle="modal" data-target="#myModal" 
+          onclick="return updateDrink( '{{@key}}','{{name}}','{{description}}','{{suggestion}}',{{price}} )" >Update</button></td>
+    </tr>
+     {{/each}}
+  </tbody>
+</table> 
+
+<script src="/js/pizza-admin.js"></script>
+
+{{else}}
+ <p>No drinks yet</p>
+
+{{/if}}
+</div>
+
+
+
+ 

@@ -1,0 +1,81 @@
+<div class="col-lg-12">
+<h3>Tables</h3>
+    <hr>
+</div>
+
+<div class="col-md-6 iffset-md-3">
+
+    <h3>Open new table</h3>
+    <br>
+    <div class="card">
+            <div class="card-body">
+                               
+                <form action="/open/table" method="POST">
+                   <div class="form-group">
+                    <label class="col-form-label" for="inputDefault">At Whom</label>
+                    <input type="text" class="form-control" name="atwhom" placeholder="Pepe Rodriguez" id="inputDefault" required>
+                    </div>
+
+                
+
+                    <div class="form-group">
+                    <label class="control-label">How many people</label>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                       
+                        <input type="number" name="people" class="form-control" aria-label="Amount (to the nearest dollar)" required>
+                        
+                        </div>
+                    </div>
+                    </div>
+                    <hr>
+                    <input type="submit" class="btn btn-success" value="Open"/>
+
+                </form>
+            </div>
+        </div>
+</div>
+
+
+<div class="col-md-6 iffset-md-3">
+
+
+{{#if tablesOpen}}
+    <h3>Active  tables</h3>
+
+    <table class="table table-hover">
+  <thead>
+      
+    <tr>
+      <th scope="col"> At Whom / Arrived</th>
+       <th scope="col">Add meal</th>
+       <th scope="col">Bill $</th>
+
+    </tr>
+
+
+  </thead>
+  <tbody>
+    {{#each tablesOpen}}
+    <tr>
+    
+      <th scope="row">{{atwhom}} / {{arrived}}</th>
+        <td><button type="button"
+         data-toggle="modal" data-target="#myModal" 
+         onclick="return AddToTable('{{@key}}','{{atwhom}}')"
+         class="btn btn-sm btn-warning">Add</button></td>
+      <td>
+          <button type="button" class="btn btn-sm btn-primary" 
+          data-toggle="modal" data-target="#myModal" 
+          onclick="return prepareBillModal( '{{@key}}','{{name}}')" >Prepare</button></td>
+    </tr>
+     {{/each}}
+  </tbody>
+</table> 
+
+<script src="/js/pizza-admin.js"></script>
+    {{else}}
+
+    <h3>No Open tables</h3>
+{{/if}}
+</div>

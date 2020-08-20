@@ -1,0 +1,13 @@
+mesas {
+    status : {abierta/cerrada/pendiente},
+    bill : $100,
+    order : {
+        pizza,
+        coca,
+        water
+    },
+    people,
+    atwhom,
+    tiempstamp
+
+}
